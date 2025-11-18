@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <nav className="bg-teal-600 text-white px-6 py-4 shadow-lg">
@@ -21,8 +23,15 @@ export default function Navbar() {
         </ul>
 
         {/* Botón de acción */}
-        <button className="hidden md:block bg-white text-teal-700 px-4 py-2 rounded-xl font-semibold hover:bg-gray-100 transition">
+        <button className="hidden md:block  bg-white text-teal-700 px-4 py-2 rounded-xl font-semibold hover:bg-gray-100 transition">
           Agendar cita
+        </button>
+
+        <button
+          className="hidden md:block  bg-white text-teal-700 px-4 py-2 rounded-xl font-semibold hover:bg-gray-100 transition"
+          onClick={() => navigate("/login")}
+        >
+          Iniciar Sesión
         </button>
 
         {/* Botón móvil */}
