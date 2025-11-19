@@ -23,12 +23,13 @@ export default function Carousel() {
   const prev = () => setCurrent((current - 1 + images.length) % images.length);
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto mt-10">
+    <div className="relative w-full max-w-4xl mx-auto mt-10 rounded-2xl overflow-hidden shadow-lg">
       {/* Imagen */}
       <img
+        key={current}
         src={images[current]}
         alt="carousel"
-        className="w-full h-64 object-cover rounded-2xl shadow-lg transition-all duration-500"
+        className="w-full h-64 object-cover rounded-2xl shadow-lg transition-opacity duration-700 animate-fadeIn"
       />
 
       {/* Botón Izquierda */}

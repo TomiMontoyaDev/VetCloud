@@ -15,20 +15,25 @@ export default function Navbar() {
         </div>
 
         {/* Links escritorio */}
-        <ul className="hidden md:flex gap-8 text-lg">
-          <li className="hover:text-gray-200 cursor-pointer">Inicio</li>
+        <ul className="hidden md:flex ml-auto gap-8 text-lg">
+          <li
+            className="hover:text-gray-200 cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            Inicio
+          </li>
           <li className="hover:text-gray-200 cursor-pointer">Servicios</li>
           <li className="hover:text-gray-200 cursor-pointer">Doctores</li>
           <li className="hover:text-gray-200 cursor-pointer">Contacto</li>
         </ul>
 
         {/* Botón de acción */}
-        <button className="hidden md:block  bg-white text-teal-700 px-4 py-2 rounded-xl font-semibold hover:bg-gray-100 transition">
+        <button className="hidden md:block ml-auto bg-white text-teal-700 px-4 py-2 rounded-xl font-semibold hover:bg-gray-100 transition">
           Agendar cita
         </button>
 
         <button
-          className="hidden md:block  bg-white text-teal-700 px-4 py-2 rounded-xl font-semibold hover:bg-gray-100 transition"
+          className="hidden md:block ml-4 bg-white text-teal-700 px-4 py-2 rounded-xl font-semibold hover:bg-gray-100 transition"
           onClick={() => navigate("/login")}
         >
           Iniciar Sesión
@@ -44,7 +49,12 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden mt-4 bg-teal-700 rounded-lg p-4">
           <ul className="flex flex-col gap-4 text-lg">
-            <li className="hover:text-gray-300 cursor-pointer">Inicio</li>
+            <li
+              className="hover:text-gray-300 cursor-pointer"
+              onClick={() => navigate("/")}
+            >
+              Inicio
+            </li>
             <li className="hover:text-gray-300 cursor-pointer">Servicios</li>
             <li className="hover:text-gray-300 cursor-pointer">Doctores</li>
             <li className="hover:text-gray-300 cursor-pointer">Contacto</li>
@@ -52,6 +62,13 @@ export default function Navbar() {
 
           <button className="mt-4 w-full bg-white text-teal-700 py-2 rounded-xl font-semibold hover:bg-gray-100 transition">
             Agendar cita
+          </button>
+
+          <button
+            className="mt-4 w-full bg-white text-teal-700 py-2 rounded-xl font-semibold hover:bg-gray-100 transition"
+            onClick={() => navigate("/login")}
+          >
+            Iniciar Sesión
           </button>
         </div>
       )}

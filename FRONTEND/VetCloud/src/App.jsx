@@ -4,6 +4,9 @@ import Home from "./Home.jsx";
 import Login from "./Login.jsx";
 import Register from "./Register.jsx";
 import Navbar from "./components/navbar.jsx";
+import ClienteHome from "./ClienteHome.jsx";
+import VeterinarioHome from "./VeterinarioHome.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   return (
@@ -13,7 +16,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/clientehome" element={<ClienteHome />} />
+        <Route path="/veterinariohome" element={<VeterinarioHome />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
