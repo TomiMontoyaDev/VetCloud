@@ -22,13 +22,21 @@ export default function Navbar() {
           >
             Inicio
           </li>
-          <li className="hover:text-gray-200 cursor-pointer">Servicios</li>
+          <li
+            className="hover:text-gray-200 cursor-pointer"
+            onClick={() => navigate("/servicios")}
+          >
+            Servicios
+          </li>
           <li className="hover:text-gray-200 cursor-pointer">Doctores</li>
           <li className="hover:text-gray-200 cursor-pointer">Contacto</li>
         </ul>
 
         {/* Botón de acción */}
-        <button className="hidden md:block ml-auto bg-white text-teal-700 px-4 py-2 rounded-xl font-semibold hover:bg-gray-100 transition">
+        <button
+          className="hidden md:block ml-auto bg-white text-teal-700 px-4 py-2 rounded-xl font-semibold hover:bg-gray-100 transition"
+          onClick={() => navigate("/citas")}
+        >
           Agendar cita
         </button>
 
@@ -55,7 +63,12 @@ export default function Navbar() {
             >
               Inicio
             </li>
-            <li className="hover:text-gray-300 cursor-pointer">Servicios</li>
+            <li
+              className="hover:text-gray-300 cursor-pointer"
+              onClick={() => navigate("/servicios")}
+            >
+              Servicios
+            </li>
             <li className="hover:text-gray-300 cursor-pointer">Doctores</li>
             <li className="hover:text-gray-300 cursor-pointer">Contacto</li>
           </ul>

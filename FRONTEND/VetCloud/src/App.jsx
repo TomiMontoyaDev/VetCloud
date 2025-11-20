@@ -7,6 +7,8 @@ import Navbar from "./components/navbar.jsx";
 import ClienteHome from "./ClienteHome.jsx";
 import VeterinarioHome from "./VeterinarioHome.jsx";
 import Footer from "./components/Footer.jsx";
+import Servicios from "./Servicios.jsx";
+import Citas from "./Citas.jsx";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/clientehome" element={<ClienteHome />} />
         <Route path="/veterinariohome" element={<VeterinarioHome />} />
+        <Route path="/servicios" element={<Servicios />} />
+        <Route path="/citas" element={<Citas />} />
       </Routes>
       <Footer />
     </BrowserRouter>
