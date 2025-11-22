@@ -28,8 +28,6 @@ export default function Navbar() {
           >
             Servicios
           </li>
-          <li className="hover:text-gray-200 cursor-pointer">Doctores</li>
-          <li className="hover:text-gray-200 cursor-pointer">Contacto</li>
         </ul>
 
         {/* Botón de acción */}
@@ -69,8 +67,6 @@ export default function Navbar() {
             >
               Servicios
             </li>
-            <li className="hover:text-gray-300 cursor-pointer">Doctores</li>
-            <li className="hover:text-gray-300 cursor-pointer">Contacto</li>
           </ul>
 
           <button className="mt-4 w-full bg-white text-teal-700 py-2 rounded-xl font-semibold hover:bg-gray-100 transition">

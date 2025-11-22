@@ -12,7 +12,7 @@ export default function Login() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:8080/auth/login", {
+      const res = await fetch("http://localhost:8080/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -31,7 +31,7 @@ export default function Login() {
         setError(data.message || "Credenciales inválidas");
         setTimeout(() => setError(""), 2000);
         return;
-      } 
+      }
 
       // Login exitoso
       setMensaje(data.message || "Login exitoso");

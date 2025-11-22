@@ -11,11 +11,11 @@ function Servicios() {
         VetCloud.
       </p>
       <p className="text-center mb-4 text-teal-600 font-semibold text-lg mt-2">
-        Click en el servicio que desees
+        Click en el servicio que desees para agendarlo.
       </p>
 
       <div className="max-w-3xl mx-auto mt-6 p-4 bg-white rounded-lg shadow-md grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Link to="/consultas">
+        <Link to="/citas">
           <div className="border border-gray-300 rounded-lg p-4 hover:shadow-lg hover:bg-teal-100 transition duration-300 ease-in-out">
             <img
               src="https://hospitalveterinario.cr/wp-content/uploads/2018/11/consulta-veterinaria-1.jpg"
@@ -30,7 +30,7 @@ function Servicios() {
             </p>
           </div>
         </Link>
-        <Link to="/vacunacion">
+        <Link to="/citas">
           <div className="border border-gray-300 rounded-lg p-4 hover:shadow-lg hover:bg-teal-100 transition duration-300 ease-in-out">
             <img
               src="https://i0.wp.com/puppis.blog/wp-content/uploads/2022/04/%C2%BFPor-que-es-importante-que-vacunemos-a-los-cachorros_-min.jpg?resize=900%2C600&ssl=1"
@@ -45,7 +45,7 @@ function Servicios() {
             </p>
           </div>
         </Link>
-        <Link to="/cirugias">
+        <Link to="/citas">
           <div className="border border-gray-300 rounded-lg p-4 hover:shadow-lg hover:bg-teal-100 transition duration-300 ease-in-out ">
             <img
               src="https://www.shutterstock.com/image-photo/veterinarian-during-dog-surgery-selective-600nw-2502928635.jpg"
@@ -60,7 +60,7 @@ function Servicios() {
             </p>
           </div>
         </Link>
-        <Link to="/esterilizacion">
+        <Link to="/citas">
           <div className="border border-gray-300 rounded-lg p-4 hover:shadow-lg hover:bg-teal-100 transition duration-300 ease-in-out ">
             <img
               src="https://saludconlupa.com/media/images/Esterilizaciones.width-1920.jpg"
