@@ -62,6 +62,14 @@ export default function Citas() {
         className="mb-4 w-full px-3 py-2 border border-gray-300 rounded-md"
       />
 
+      <input
+        name="dueno"
+        type="text"
+        placeholder="Nombre del dueño"
+        onChange={handleChange}
+        className="mb-4 w-full px-3 py-2 border border-gray-300 rounded-md"
+      />
+
       <select
         name="servicio"
         onChange={handleChange}
@@ -72,6 +80,22 @@ export default function Citas() {
         <option value="vacunacion">Vacunación</option>
         <option value="cirugia">Cirugía</option>
         <option value="esterilizacion">Esterilización</option>
+      </select>
+
+      <select
+        name="veterinario"
+        onChange={handleChange}
+        className="mb-4 w-full px-3 py-2 border border-gray-300 rounded-md"
+      >
+        <option value="">Selecciona el veterinario</option>
+        <option value="Dr Juan Perez">
+          Dr Juan Perez (Consultas Veterinarias)
+        </option>
+        <option value="Dra Maria Gomez">Dra Maria Gomez (Vacunación)</option>
+        <option value="Dr Carlos Lopez">Dr Carlos Lopez (Cirugía)</option>
+        <option value="Dra Ana Martinez">
+          Dra Ana Martinez (Esterilización)
+        </option>
       </select>
 
       <input
@@ -93,6 +117,13 @@ export default function Citas() {
         className="w-full bg-teal-600 text-white py-2 rounded-md font-semibold hover:bg-teal-700 transition"
       >
         Agendar Cita
+      </button>
+      <button
+        className="w-full bg-teal-600 text-white py-2 rounded-md font-semibold hover:bg-teal-700 transition mt-4"
+        onClick={() => window.history.back()}
+        type="button"
+      >
+        Volver
       </button>
     </div>
   );

@@ -1,39 +1,133 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Historial;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5173")
 public class CitaController {
 
-    // Listado de las citas en memoria
     private List<Map<String, String>> citas = new ArrayList<>();
+    private List<Historial> historiales = new ArrayList<>();
+    private int contadorId = 1;
 
     @PostMapping("/agendar")
-    public ResponseEntity<String> agendar(@RequestBody Map<String, String> cita) {
+public ResponseEntity<Map<String, String>> agendar(@RequestBody Map<String, String> cita) {
 
-        String fecha = cita.get("fecha");
-        String hora = cita.get("hora");
+    String fecha = cita.get("fecha");
+    String hora = cita.get("hora");
 
-        // Validar si ya existe una cita con la misma fecha y hora
-        for (Map<String, String> c : citas) {
-            if (c.get("fecha").equals(fecha) && c.get("hora").equals(hora)) {
-                return ResponseEntity.status(409)
-                        .body("Fecha y hora ya ocupadas");
+    // Validar si ya existe una cita con la misma fecha y hora
+    for (Map<String, String> c : citas) {
+        if (c.get("fecha").equals(fecha) && c.get("hora").equals(hora)) {
+            return ResponseEntity.status(409)
+                    .body(Map.of("mensaje", "⚠️ Esta fecha y hora ya están ocupadas"));
+        }
+    }
+
+    // Si no está ocupada, se asigna ID y se guarda
+    String id = String.valueOf(contadorId++);
+    cita.put("id", id);
+    citas.add(cita);
+
+    historiales.add(new Historial(
+            cita.getOrDefault("servicio", "Consulta"),
+            cita.getOrDefault("veterinario", "sin agendar"),
+            cita.getOrDefault("mascota", "Sin nombre"),
+            cita.getOrDefault("peso", "N/A"),
+            cita.getOrDefault("vacunas", "No registradas"),
+            cita.getOrDefault("tratamientos", "No registrados"),
+            cita.getOrDefault("observaciones", "Sin observaciones"),
+            fecha,
+            hora,
+            id,
+            cita.getOrDefault("dueno", "Sin dueño")
+    ));
+
+    return ResponseEntity.ok(Map.of("mensaje", "✅ Cita agendada con éxito", "id", id));
+}
+
+
+    @GetMapping("/historial")
+    public List<Historial> obtenerHistorial() {
+        return historiales;
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+public ResponseEntity<String> eliminarCita(@PathVariable String id) {
+    boolean removedCita = citas.removeIf(c -> c.get("id").equals(id));
+    boolean removedHistorial = historiales.removeIf(h -> h.getId().equals(id));
+
+    if (removedCita || removedHistorial) {
+        return ResponseEntity.ok("Cita eliminada");
+    } else {
+        return ResponseEntity.status(404).body("Cita no encontrada");
+    }
+}
+
+@PutMapping("/modificar/{id}")
+public ResponseEntity<String> modificarCita(@PathVariable String id, @RequestBody Map<String, String> datos) {
+
+    for (Map<String, String> c : citas) {
+        if (c.get("id").equals(id)) {
+
+            // Validar si la nueva fecha y hora ya está ocupada por otra cita
+            String nuevaFecha = datos.get("fecha");
+            String nuevaHora = datos.get("hora");
+            for (Map<String, String> otra : citas) {
+                if (!otra.get("id").equals(id) &&
+                    otra.get("fecha").equals(nuevaFecha) &&
+                    otra.get("hora").equals(nuevaHora)) {
+                    return ResponseEntity.status(409).body("⚠️ Fecha y hora ya ocupadas");
+                }
+            }
+
+            // Actualizar datos de la cita
+            c.putAll(datos);
+
+            // Actualizar también en historial
+            for (Historial h : historiales) {
+                if (h.getId().equals(id)) {
+                    h.setMascota(datos.getOrDefault("mascota", h.getMascota()));
+                    h.setServicio(datos.getOrDefault("servicio", h.getServicio()));
+                    h.setFecha(datos.getOrDefault("fecha", h.getFecha()));
+                    h.setHora(datos.getOrDefault("hora", h.getHora()));
+                    h.setVeterinario(datos.getOrDefault("veterinario", h.getVeterinario()));
+                    h.setPeso(datos.getOrDefault("peso", h.getPeso()));
+                    h.setVacunas(datos.getOrDefault("vacunas", h.getVacunas()));
+                    h.setTratamientos(datos.getOrDefault("tratamientos", h.getTratamientos()));
+                    h.setObservaciones(datos.getOrDefault("observaciones", h.getObservaciones()));
+                    h.setDueno(datos.getOrDefault("dueno", h.getDueno()));
+                    break;
+                }
+            }
+
+            return ResponseEntity.ok("✅ Cita modificada correctamente");
+        }
+    }
+
+    return ResponseEntity.status(404).body("Cita no encontrada");
+}
+
+ 
+    @PostMapping("/estado")
+    public ResponseEntity<String> actualizarEstado(@RequestBody Map<String, String> data) {
+
+        String id = data.get("id");
+        String estado = data.get("estado");
+
+        for (Historial h : historiales) {
+            if (h.getId().equals(id)) {
+                h.setEstado(estado);
+                return ResponseEntity.ok("Estado actualizado");
             }
         }
 
-        // Si no está ocupada, la guardamos
-        citas.add(cita);
-
-        return ResponseEntity.ok("Cita agendada");
+        return ResponseEntity.status(404).body("No existe la cita");
     }
+
+    
 }

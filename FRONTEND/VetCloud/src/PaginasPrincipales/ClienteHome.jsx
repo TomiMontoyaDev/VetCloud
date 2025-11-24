@@ -27,10 +27,16 @@ function ClienteHome() {
       >
         Historial
       </button>
-      <button className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition">
+      <button
+        className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
+        onClick={() => navigate("/crearmascota")}
+      >
         Crear Mascota
       </button>
-      <button className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition">
+      <button
+        className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
+        onClick={() => navigate("/vermascotas")}
+      >
         Ver Mascotas
       </button>
       <button
@@ -45,6 +51,14 @@ function ClienteHome() {
         onClick={() => navigate("/gestorcitas")}
       >
         Ver Citas
+      </button>
+
+      <button
+        className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg
+        hover:bg-teal-700 transition"
+        onClick={() => navigate("/servicios")}
+      >
+        Ver Servicios
       </button>
     </div>
   );

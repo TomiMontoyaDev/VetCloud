@@ -11,26 +11,16 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-2">
           <span className="text-3xl">🐾</span>
-          <h1 className="text-2xl font-bold tracking-wide">VetCloud</h1>
-        </div>
-
-        {/* Links escritorio */}
-        <ul className="hidden md:flex ml-auto gap-8 text-lg">
-          <li
-            className="hover:text-gray-200 cursor-pointer"
+          <h1
+            className="text-2xl font-bold tracking-wide cursor-pointer hover:text-gray-300 transition"
             onClick={() => navigate("/")}
           >
-            Inicio
-          </li>
-          <li
-            className="hover:text-gray-200 cursor-pointer"
-            onClick={() => navigate("/servicios")}
-          >
-            Servicios
-          </li>
-        </ul>
+            VetCloud
+          </h1>
+        </div>
 
         {/* Botón de acción */}
+
         <button
           className="hidden md:block ml-auto bg-white text-teal-700 px-4 py-2 rounded-xl font-semibold hover:bg-gray-100 transition"
           onClick={() => navigate("/citas")}
@@ -60,12 +50,6 @@ export default function Navbar() {
               onClick={() => navigate("/")}
             >
               Inicio
-            </li>
-            <li
-              className="hover:text-gray-300 cursor-pointer"
-              onClick={() => navigate("/servicios")}
-            >
-              Servicios
             </li>
           </ul>
 

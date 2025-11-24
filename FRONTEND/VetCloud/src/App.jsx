@@ -1,16 +1,20 @@
 import "./css/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Home.jsx";
-import Login from "./Login.jsx";
-import Register from "./Register.jsx";
-import Navbar from "./components/navbar.jsx";
-import ClienteHome from "./ClienteHome.jsx";
-import VeterinarioHome from "./VeterinarioHome.jsx";
+import Home from "./PaginasPrincipales/Home.jsx";
+import Login from "./PaginasPrincipales/Login.jsx";
+import Register from "./PaginasPrincipales/Register.jsx";
+import Navbar from "./components/Navbar.jsx";
+import ClienteHome from "./PaginasPrincipales/ClienteHome.jsx";
+import VeterinarioHome from "./PaginasPrincipales/VeterinarioHome.jsx";
 import Footer from "./components/Footer.jsx";
-import Servicios from "./Servicios.jsx";
-import Citas from "./Citas.jsx";
+import Servicios from "./PaginasPrincipales/Servicios.jsx";
+import Citas from "./Citas/Citas.jsx";
 import Historial from "./Historial.jsx";
-import GestorCitas from "./GestorCitas.jsx";
+import GestorCitas from "./Citas/GestorCitas.jsx";
+import CrearMascota from "./Mascota/CrearMascota.jsx";
+import MascotaDetalle from "./Mascota/VerMascota.jsx";
+import VerMascotas from "./Mascota/Mascotas.jsx";
+import ModificarCita from "./Citas/ModificarCita.jsx";
 
 function App() {
   return (
@@ -26,6 +30,10 @@ function App() {
         <Route path="/citas" element={<Citas />} />
         <Route path="/historial" element={<Historial />} />
         <Route path="/gestorcitas" element={<GestorCitas />} />
+        <Route path="/crearmascota" element={<CrearMascota />} />
+        <Route path="/vermascotas" element={<VerMascotas />} />
+        <Route path="/mascotas/:id" element={<MascotaDetalle />} />
+        <Route path="/modificarcita" element={<ModificarCita />} />
       </Routes>
       <Footer />
     </BrowserRouter>

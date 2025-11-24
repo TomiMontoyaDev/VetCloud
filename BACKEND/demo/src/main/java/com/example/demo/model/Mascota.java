@@ -1,43 +1,34 @@
 package com.example.demo.model;
 
 public class Mascota {
-    private Long id;
+
+    private int id;
     private String nombre;
-    private String tipo;
+    private String especie;
     private String raza;
-    private Cliente dueño;
+    private String dueno;
 
+    public Mascota() {}
 
-    public String getRaza() {
-        return raza;
-    }
-    public void setRaza(String raza) {
-        this.raza = raza;
-    }
-
-    public Cliente getDueño() {
-        return dueño;
-    }
-    public void setDueño(Cliente dueño) {
-        this.dueño = dueño;
-    }
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
+    public Mascota(int id, String nombre, String especie, String raza, String dueno) {
         this.id = id;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
         this.nombre = nombre;
+        this.especie = especie;
+        this.raza = raza;
+        this.dueno = dueno;
     }
-    public String getTipo() {
-        return tipo;
-    }
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-    
+
+    // Getters
+    public int getId() { return id; }
+    public String getNombre() { return nombre; }
+    public String getEspecie() { return especie; }
+    public String getRaza() { return raza; }
+    public String getDueno() { return dueno; }
+
+    // Setters
+    public void setId(int id) { this.id = id; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setEspecie(String especie) { this.especie = especie; }
+    public void setRaza(String raza) { this.raza = raza; }
+    public void setDueno(String dueno) { this.dueno = dueno; }
 }
