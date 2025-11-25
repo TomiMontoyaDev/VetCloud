@@ -10,19 +10,41 @@ function VeterinarioHome() {
       </h1>
 
       <p className="text-lg text-gray-700 mb-4 text-center">
-        Desde aquí puedes gestionar las citas, pacientes y más.
+        Desde aquí puedes:
       </p>
+      <ul className="list-disc list-inside text-gray-700 text text-center">
+        <li>Gestionar el historial médico de las mascotas.</li>
+        <li>Ver y administrar las citas programadas.</li>
+        <li>Agregar nuevas mascotas al sistema.</li>
+      </ul>
 
-      <button
-        className="mt-6 w-full bg-teal-600 text-white py-3 rounded-lg hover:bg-teal-700 transition duration-300 "
-        onClick={() => navigate("/gestorcitas")}
-      >
-        Ver Citas
-      </button>
+      <div className="flex justify-center mt-6">
+        <button
+          className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
+          onClick={() => navigate("/crearmascota")}
+        >
+          Crear Mascota
+        </button>
+        <button
+          className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
+          onClick={() => navigate("/vermascotas")}
+        >
+          Ver Mascotas
+        </button>
+        <button
+          className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
+          onClick={() => navigate("/gestorcitas")}
+        >
+          Ver Citas
+        </button>
 
-      <button className="mt-4 w-full bg-teal-600 text-white py-3 rounded-lg hover:bg-teal-700 transition duration-300">
-        Historial de Pacientes
-      </button>
+        <button
+          className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
+          onClick={() => navigate("/historial")}
+        >
+          Historial de Pacientes
+        </button>
+      </div>
     </div>
   );
 }

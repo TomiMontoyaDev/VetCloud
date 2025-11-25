@@ -113,6 +113,25 @@ public ResponseEntity<String> modificarCita(@PathVariable String id, @RequestBod
 }
 
  
+@PutMapping("/historial/actualizar/{id}")
+public ResponseEntity<String> actualizarHistorial(@PathVariable String id, @RequestBody Map<String, String> datos) {
+
+    for (Historial h : historiales) {
+        if (h.getId().equals(id)) {
+
+            // Actualiza únicamente los datos clínicos
+            h.setPeso(datos.getOrDefault("peso", h.getPeso()));
+            h.setVacunas(datos.getOrDefault("vacunas", h.getVacunas()));
+            h.setTratamientos(datos.getOrDefault("tratamientos", h.getTratamientos()));
+            h.setObservaciones(datos.getOrDefault("observaciones", h.getObservaciones()));
+
+            return ResponseEntity.ok("✅ Historial clínico actualizado");
+        }
+    }
+
+    return ResponseEntity.status(404).body("❌ No se encontró el historial con ese ID");
+}
+
     @PostMapping("/estado")
     public ResponseEntity<String> actualizarEstado(@RequestBody Map<String, String> data) {
 
@@ -128,6 +147,54 @@ public ResponseEntity<String> modificarCita(@PathVariable String id, @RequestBod
 
         return ResponseEntity.status(404).body("No existe la cita");
     }
+
+    @GetMapping("/historial/mascota/{nombre}")
+public List<Historial> obtenerHistorialDeMascota(@PathVariable String nombre) {
+    List<Historial> resultado = new ArrayList<>();
+
+    for (Historial h : historiales) {
+        if (h.getMascota().equalsIgnoreCase(nombre)) {
+            resultado.add(h);
+        }
+    }
+
+    return resultado;
+}
+
+@DeleteMapping("/eliminar/historial/{id}")
+public ResponseEntity<String> eliminarHistorial(@PathVariable String id) {
+    boolean removedCita = citas.removeIf(c -> c.get("id").equals(id));
+    boolean removedHistorial = historiales.removeIf(h -> h.getId().equals(id));
+
+    if (removedCita || removedHistorial) {
+        return ResponseEntity.ok("Historial eliminado");
+    } else {
+        return ResponseEntity.status(404).body("Historial no encontrado");
+    }
+}
+
+@PostMapping("/historialmedico/agregar")
+public ResponseEntity<Map<String, String>> agregarHistorial(@RequestBody Map<String, String> datos) {
+    String id = String.valueOf(contadorId++); // Generar ID único
+
+    Historial h = new Historial(
+        datos.getOrDefault("servicio", "Consulta"),
+        datos.getOrDefault("veterinario", "Sin asignar"),
+        datos.getOrDefault("mascota", "Sin nombre"),
+        datos.getOrDefault("peso", "N/A"),
+        datos.getOrDefault("vacunas", "No registradas"),
+        datos.getOrDefault("tratamientos", "No registrados"),
+        datos.getOrDefault("observaciones", "Sin observaciones"),
+        datos.getOrDefault("fecha", "N/A"),
+        datos.getOrDefault("hora", "N/A"),
+        id,
+        datos.getOrDefault("dueno", "Sin dueño")
+    );
+
+    historiales.add(h);
+
+    return ResponseEntity.ok(Map.of("mensaje", "✅ Historial agregado correctamente", "id", id));
+}
 
     
 }

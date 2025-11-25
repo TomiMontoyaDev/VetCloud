@@ -8,58 +8,41 @@ function ClienteHome() {
       <h1 className="text-4xl font-bold mb-6 text-center text-teal-600">
         Bienvenido a tu Panel de Cliente 🐾{" "}
       </h1>
-      <p className="text-lg text-gray-700 mb-4">
-        Aquí puedes gestionar la información de tus mascotas, agendar citas y
-        comunicarte con nuestros veterinarios expertos.
+      <p className="text-lg text-gray-700 mb-4 text-center">
+        Aquí puedes agendar citas y comunicarte con nuestros veterinarios
+        expertos.
       </p>
-      <ul className="list-disc list-inside text-gray-700">
-        <li>Ver y actualizar el perfil de tus mascotas.</li>
+      <ul className="list-disc list-inside text-gray-700 text text-center">
         <li>Agendar, modificar o cancelar citas veterinarias.</li>
-        <li>Acceder a historiales médicos y recomendaciones de cuidado.</li>
+
         <li>
-          Contactar directamente a los veterinarios para consultas rápidas.
+          Ver Servicios disponibles y sus detalles para el cuidado de tus
+          mascotas.
         </li>
       </ul>
+      <div className="flex justify-center mt-6">
+        <button
+          className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition "
+          onClick={() => navigate("/citas")}
+        >
+          Agendar Cita
+        </button>
 
-      <button
-        className="mt-6 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
-        onClick={() => navigate("/historial")}
-      >
-        Historial
-      </button>
-      <button
-        className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
-        onClick={() => navigate("/crearmascota")}
-      >
-        Crear Mascota
-      </button>
-      <button
-        className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
-        onClick={() => navigate("/vermascotas")}
-      >
-        Ver Mascotas
-      </button>
-      <button
-        className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
-        onClick={() => navigate("/citas")}
-      >
-        Agendar Cita
-      </button>
+        <button
+          className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
+          onClick={() => navigate("/gestorcitas")}
+        >
+          Ver Citas
+        </button>
 
-      <button
-        className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
-        onClick={() => navigate("/gestorcitas")}
-      >
-        Ver Citas
-      </button>
-
-      <button
-        className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg
+        <button
+          className="mt-6 ml-4 bg-teal-600 text-white px-4 py-2 rounded-lg
         hover:bg-teal-700 transition"
-        onClick={() => navigate("/servicios")}
-      >
-        Ver Servicios
-      </button>
+          onClick={() => navigate("/servicios")}
+        >
+          Ver Servicios
+        </button>
+      </div>
     </div>
   );
 }

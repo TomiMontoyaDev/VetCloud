@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Mascotas() {
   const [mascotas, setMascotas] = useState([]);
-
+  const navigate = useNavigate();
   // cargar mascotas
   const cargar = async () => {
     const res = await fetch("http://localhost:8080/mascotas");
@@ -43,22 +44,6 @@ export default function Mascotas() {
               <td className="py-2 px-4 border">{m.especie}</td>
               <td className="py-2 px-4 border">{m.dueno}</td>
               <td className="py-2 px-4 border flex justify-center gap-2">
-                {/* Ver */}
-                <a
-                  className="px-3 py-1 bg-blue-500 text-white rounded"
-                  href={`/mascotas/${m.id}`}
-                >
-                  Ver
-                </a>
-
-                {/* Editar */}
-                <a
-                  className="px-3 py-1 bg-yellow-500 text-white rounded"
-                  href={`/mascotas/editar/${m.id}`}
-                >
-                  Editar
-                </a>
-
                 {/* Eliminar */}
                 <button
                   onClick={() => eliminar(m.id)}
@@ -73,7 +58,7 @@ export default function Mascotas() {
       </table>
       <button
         className="mt-6 bg-teal-600 text-white px-4 py-2 rounded-lg"
-        onClick={() => (window.location.href = "/clientehome")}
+        onClick={() => window.history.back()}
       >
         Volver
       </button>

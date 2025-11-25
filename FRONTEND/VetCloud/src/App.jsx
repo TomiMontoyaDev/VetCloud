@@ -9,10 +9,10 @@ import VeterinarioHome from "./PaginasPrincipales/VeterinarioHome.jsx";
 import Footer from "./components/Footer.jsx";
 import Servicios from "./PaginasPrincipales/Servicios.jsx";
 import Citas from "./Citas/Citas.jsx";
-import Historial from "./Historial.jsx";
+import Historial from "./Mascota/Historial.jsx";
 import GestorCitas from "./Citas/GestorCitas.jsx";
 import CrearMascota from "./Mascota/CrearMascota.jsx";
-import MascotaDetalle from "./Mascota/VerMascota.jsx";
+import MascotaHistorial from "./Mascota/Historial.jsx";
 import VerMascotas from "./Mascota/Mascotas.jsx";
 import ModificarCita from "./Citas/ModificarCita.jsx";
 
@@ -32,7 +32,12 @@ function App() {
         <Route path="/gestorcitas" element={<GestorCitas />} />
         <Route path="/crearmascota" element={<CrearMascota />} />
         <Route path="/vermascotas" element={<VerMascotas />} />
-        <Route path="/mascotas/:id" element={<MascotaDetalle />} />
+        <Route
+          path="/mascotas/historial/:nombreMascota"
+          element={<MascotaHistorial />}
+        />
+        
+
         <Route path="/modificarcita" element={<ModificarCita />} />
       </Routes>
       <Footer />
