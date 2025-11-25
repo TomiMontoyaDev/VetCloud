@@ -1,0 +1,25 @@
+# Imagen base con Java 21
+FROM eclipse-temurin:21-jdk-alpine
+
+# Carpeta donde estará tu app
+WORKDIR /app
+
+# Copia mvnw, .mvn y pom.xml
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+
+# Copia el código fuente
+COPY src src
+
+# Da permisos a mvnw
+RUN chmod +x mvnw
+
+# Construye el proyecto
+RUN ./mvnw clean package -DskipTests
+
+# Expone el puerto que usa Spring Boot
+EXPOSE 8080
+
+# Comando para iniciar la app
+CMD ["java", "-jar", "target/demo-0.0.1-SNAPSHOT.jar"]
