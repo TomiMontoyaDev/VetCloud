@@ -21,7 +21,7 @@ export default function CrearMascota() {
       return;
     }
 
-    const res = await fetch("http://localhost:8080/mascotas", {
+    const res = await fetch("https://vetcloud-backend.onrender.com/mascotas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),

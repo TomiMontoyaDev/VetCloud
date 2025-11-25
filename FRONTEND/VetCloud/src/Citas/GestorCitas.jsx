@@ -19,7 +19,7 @@ function GestorCitas() {
 
   // Traer rol del usuario
   useEffect(() => {
-    fetch("http://localhost:8080/usuarioActual")
+    fetch("https://vetcloud-backend.onrender.com/usuarioActual")
       .then((res) => res.json())
       .then((data) => setRol(data.rol))
       .catch((err) => console.error("Error obteniendo usuario:", err));
@@ -30,7 +30,7 @@ function GestorCitas() {
 
   // Cargar historial
   useEffect(() => {
-    fetch("http://localhost:8080/historial")
+    fetch("https://vetcloud-backend.onrender.com/historial")
       .then((res) => res.json())
       .then((data) => setHistorial(data))
       .catch((err) => console.error("Error cargando historial:", err));
@@ -58,11 +58,14 @@ function GestorCitas() {
   // Modificar cita (PUT)
   const modificarCita = async (id, nuevosDatos) => {
     try {
-      const res = await fetch(`http://localhost:8080/modificar/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(nuevosDatos),
-      });
+      const res = await fetch(
+        `https://vetcloud-backend.onrender.com/modificar/${id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(nuevosDatos),
+        }
+      );
 
       const data = await res.text();
 
@@ -82,9 +85,14 @@ function GestorCitas() {
 
   // Eliminar cita (DELETE)
   const eliminarCita = () => {
-    fetch(`http://localhost:8080/eliminar/${String(citaSeleccionada.id)}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://vetcloud-backend.onrender.com/eliminar/${String(
+        citaSeleccionada.id
+      )}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => {
         if (!res.ok) throw new Error("No se pudo eliminar");
         setHistorial(historial.filter((x) => x.id !== citaSeleccionada.id));
@@ -95,7 +103,7 @@ function GestorCitas() {
 
   // Cambiar estado (para veterinario)
   const cambiarEstado = (id, nuevoEstado) => {
-    fetch("http://localhost:8080/estado", {
+    fetch("https://vetcloud-backend.onrender.com/estado", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, estado: nuevoEstado }),

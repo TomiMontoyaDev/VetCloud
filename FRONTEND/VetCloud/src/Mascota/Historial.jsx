@@ -13,7 +13,9 @@ function Historial() {
   // Cargar historial desde backend
   const cargarHistorial = async () => {
     try {
-      const res = await fetch("http://localhost:8080/historial");
+      const res = await fetch(
+        "https://vetcloud-backend.onrender.com/historial"
+      );
       const data = await res.json();
       setHistorial(data);
     } catch (err) {
@@ -35,7 +37,7 @@ function Historial() {
   const eliminarHistorial = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8080/eliminar/historial/${historialSeleccionado.id}`,
+        `https://vetcloud-backend.onrender.com/eliminar/historial/${historialSeleccionado.id}`,
         { method: "DELETE" }
       );
       if (!res.ok) throw new Error("No se pudo eliminar");
@@ -54,7 +56,7 @@ function Historial() {
 
     try {
       const res = await fetch(
-        `http://localhost:8080/historial/actualizar/${historialSeleccionado.id}`,
+        `https://vetcloud-backend.onrender.com/historial/actualizar/${historialSeleccionado.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

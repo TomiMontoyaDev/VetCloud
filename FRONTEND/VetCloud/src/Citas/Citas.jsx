@@ -25,7 +25,7 @@ export default function Citas() {
     }
 
     try {
-      const res = await fetch("http://localhost:8080/agendar", {
+      const res = await fetch("https://vetcloud-backend.onrender.com/agendar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

@@ -6,13 +6,15 @@ export default function Mascotas() {
   const navigate = useNavigate();
   // cargar mascotas
   const cargar = async () => {
-    const res = await fetch("http://localhost:8080/mascotas");
+    const res = await fetch("https://vetcloud-backend.onrender.com/mascotas");
     const data = await res.json();
     setMascotas(data);
   };
 
   const eliminar = async (id) => {
-    await fetch(`http://localhost:8080/mascotas/${id}`, { method: "DELETE" });
+    await fetch(`https://vetcloud-backend.onrender.com/mascotas/${id}`, {
+      method: "DELETE",
+    });
     cargar();
   };
 
