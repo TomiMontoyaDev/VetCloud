@@ -10,4 +10,8 @@ public class Veterinario extends Usuario {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
+    @Override
+    public String obtenerInfo() {
+        return super.obtenerInfo() + " - Especialidad: " + especialidad;
+    }
 }

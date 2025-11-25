@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 public class Historial {
-
+    
     private String id;
     private String servicio;
     private String veterinario;
@@ -35,7 +35,7 @@ public class Historial {
 
         this.estado = "Sin estado";
     }
-
+    // Getters
     public String getId() { return id; }
     public String getServicio() { return servicio; }
     public String getVeterinario() { return veterinario; }
@@ -49,6 +49,7 @@ public class Historial {
     public String getEstado() { return estado; }
     public String getDueno() { return dueno; }
 
+    // Setters
     public void setEstado(String estado) { this.estado = estado; }
     public void setServicio(String servicio) { this.servicio = servicio; }
     public void setVeterinario(String veterinario) { this.veterinario = veterinario; }

@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-public class Usuario {
+public  class Usuario {
 
     private String nombre;
     private String email;
@@ -27,4 +27,14 @@ public class Usuario {
 
     public String getRol() { return rol; }
     public void setRol(String rol) { this.rol = rol; }
+
+    public String obtenerInfo(){
+        return "Nombre: " + this.getNombre() 
+        + " - Email: " 
+        + this.getEmail() 
+        + " - Rol: " 
+        + this.getRol();
+    }
+    
+
 }

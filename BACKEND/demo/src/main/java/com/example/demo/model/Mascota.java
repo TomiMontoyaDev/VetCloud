@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-public class Mascota {
+public abstract class Mascota {
 
     private int id;
     private String nombre;

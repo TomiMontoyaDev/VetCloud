@@ -14,4 +14,12 @@ public class Cliente extends Usuario {
     public void setMascotas(List<Mascota> mascotas) {
         this.mascotas = mascotas;
     }
+     
+    @Override
+    public String obtenerInfo() {
+        return super.obtenerInfo() 
+        + " - Cantidad de mascotas: " 
+        + (getMascotas() != null ? 
+        getMascotas().size() : 0);
+    }
 }

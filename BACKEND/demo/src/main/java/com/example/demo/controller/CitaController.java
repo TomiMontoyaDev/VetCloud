@@ -6,14 +6,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+
+// Controlador para gestionar citas y historiales médicos
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
 public class CitaController {
 
+    // Almacena las citas y los historiales médicos en memoria
     private List<Map<String, String>> citas = new ArrayList<>();
     private List<Historial> historiales = new ArrayList<>();
     private int contadorId = 1;
 
+
+    // Endpoint para agendar una cita
     @PostMapping("/agendar")
 public ResponseEntity<Map<String, String>> agendar(@RequestBody Map<String, String> cita) {
 
@@ -50,7 +55,7 @@ public ResponseEntity<Map<String, String>> agendar(@RequestBody Map<String, Stri
     return ResponseEntity.ok(Map.of("mensaje", "✅ Cita agendada con éxito", "id", id));
 }
 
-
+    // Listar todas las citas y los historiales médicos
     @GetMapping("/historial")
     public List<Historial> obtenerHistorial() {
         return historiales;
@@ -112,7 +117,7 @@ public ResponseEntity<String> modificarCita(@PathVariable String id, @RequestBod
     return ResponseEntity.status(404).body("Cita no encontrada");
 }
 
- 
+ // Actualizar solo los datos clínicos de un historial médico
 @PutMapping("/historial/actualizar/{id}")
 public ResponseEntity<String> actualizarHistorial(@PathVariable String id, @RequestBody Map<String, String> datos) {
 
@@ -132,6 +137,7 @@ public ResponseEntity<String> actualizarHistorial(@PathVariable String id, @Requ
     return ResponseEntity.status(404).body("❌ No se encontró el historial con ese ID");
 }
 
+// Actualizar el estado de una cita
     @PostMapping("/estado")
     public ResponseEntity<String> actualizarEstado(@RequestBody Map<String, String> data) {
 
@@ -148,6 +154,7 @@ public ResponseEntity<String> actualizarHistorial(@PathVariable String id, @Requ
         return ResponseEntity.status(404).body("No existe la cita");
     }
 
+    // Obtener historial médico de una mascota por su nombre
     @GetMapping("/historial/mascota/{nombre}")
 public List<Historial> obtenerHistorialDeMascota(@PathVariable String nombre) {
     List<Historial> resultado = new ArrayList<>();
@@ -161,6 +168,7 @@ public List<Historial> obtenerHistorialDeMascota(@PathVariable String nombre) {
     return resultado;
 }
 
+// Eliminar un historial médico por ID
 @DeleteMapping("/eliminar/historial/{id}")
 public ResponseEntity<String> eliminarHistorial(@PathVariable String id) {
     boolean removedCita = citas.removeIf(c -> c.get("id").equals(id));
@@ -173,6 +181,7 @@ public ResponseEntity<String> eliminarHistorial(@PathVariable String id) {
     }
 }
 
+// Agregar un nuevo historial médico
 @PostMapping("/historialmedico/agregar")
 public ResponseEntity<Map<String, String>> agregarHistorial(@RequestBody Map<String, String> datos) {
     String id = String.valueOf(contadorId++); // Generar ID único

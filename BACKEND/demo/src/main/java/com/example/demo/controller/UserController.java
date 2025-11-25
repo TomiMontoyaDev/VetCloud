@@ -10,15 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.demo.model.Usuario;
 
+// Controlador para manejo de usuarios (registro y login)
 @RestController
 @CrossOrigin(origins = "*")
 public class UserController {
-
+    // Simulación de base de datos en memoria
     private List<Usuario> usuarios = new ArrayList<>();
 
     // Variable temporal para simular el usuario logueado
     private Usuario usuarioLogueado = null;
 
+    // Endpoints de registro y login
     @PostMapping("/register")
     public Response registrar(@RequestBody Usuario nuevo) {
         for (Usuario u : usuarios) {
@@ -49,7 +51,7 @@ public class UserController {
         return new LoginResponse("Credenciales inválidas", null, null, null);
     }
 
-    // Nuevo endpoint para obtener el usuario actual
+    // Endpoint para obtener el usuario actual
     @GetMapping("/usuarioActual")
     public UsuarioActualResponse getUsuarioActual() {
         if (usuarioLogueado != null) {
@@ -82,6 +84,7 @@ public class UserController {
         }
     }
 
+    // Respuesta para el usuario actual
     class UsuarioActualResponse {
         public String nombre;
         public String email;
