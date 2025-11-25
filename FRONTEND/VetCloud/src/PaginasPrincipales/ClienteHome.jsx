@@ -42,6 +42,28 @@ function ClienteHome() {
         >
           Ver Servicios
         </button>
+        <button
+          className="px-3 py-1 bg-purple-600 text-white rounded"
+          onClick={async () => {
+            const res = await fetch(
+              "https://vetcloud-backend.onrender.com/mascotas/recomendacion",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  nombre: m.nombre,
+                  dueno: m.dueno,
+                  especie: m.especie,
+                }),
+              }
+            );
+
+            const recomendacion = await res.text();
+            alert(recomendacion);
+          }}
+        >
+          Ver Recomendación
+        </button>
       </div>
     </div>
   );
