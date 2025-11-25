@@ -14,20 +14,32 @@ export default function CrearMascota() {
 
   const crearMascota = async () => {
     setMensaje("");
-
-    // Validación manual
     if (!form.nombre || !form.especie || !form.raza || !form.dueno) {
       setMensaje("⚠ Debes llenar todos los campos");
       return;
     }
 
-    const res = await fetch("https://vetcloud-backend.onrender.com/mascotas", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+    try {
+      const res = await fetch(
+        "https://vetcloud-backend.onrender.com/mascotas",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        }
+      );
 
-    if (res.ok) setMensaje("Mascota creada ✅");
+      if (!res.ok) {
+        const text = await res.text();
+        setMensaje("Error: " + text);
+        return;
+      }
+
+      const data = await res.json();
+      setMensaje("Mascota creada ✅: " + data.nombre);
+    } catch (error) {
+      setMensaje("Error de conexión: " + error.message);
+    }
   };
 
   return (
